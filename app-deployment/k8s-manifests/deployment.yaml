@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: css-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: css-app
+  template:
+    metadata:
+      labels:
+        app: css-app
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: worker1.com
+      containers:
+      - name: css-container
+        image: <dockerhubusername>/bminfotrade:latest
+        ports:
+        - containerPort: 3000
+          hostPort: 32000
